@@ -70,3 +70,4 @@ Admin demo:
 - `POST /api/admin/products`
 - `DELETE /api/admin/products/:id`
 - `GET /api/admin/orders`
+# ecommerce-trilingual

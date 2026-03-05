@@ -1,0 +1,103 @@
+{
+  "users": [
+    {
+      "id": "u_admin",
+      "name": "Admin TriShop",
+      "email": "admin@trishop.dev",
+      "passwordHash": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+      "role": "admin",
+      "createdAt": "2026-03-05T13:36:33.840Z"
+    }
+  ],
+  "products": [
+    {
+      "id": "p1",
+      "name": { "en": "Trail Running Shoes", "id": "Sepatu Lari Trail", "es": "Zapatillas de Trail Running" },
+      "description": {
+        "en": "High-performance trail runners with superior grip and breathable mesh upper. Perfect for off-road adventures and daily training.",
+        "id": "Sepatu trail performa tinggi dengan grip superior dan mesh breathable. Sempurna untuk petualangan off-road dan latihan harian.",
+        "es": "Zapatillas de trail de alto rendimiento con agarre superior y malla transpirable. Perfectas para aventuras todoterreno."
+      },
+      "price": 89, "stock": 20, "category": "footwear",
+      "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80"
+    },
+    {
+      "id": "p2",
+      "name": { "en": "Minimal Leather Wallet", "id": "Dompet Kulit Minimalis", "es": "Billetera de Cuero Minimalista" },
+      "description": {
+        "en": "Slim RFID-blocking genuine leather wallet. Holds up to 8 cards and fits comfortably in any pocket.",
+        "id": "Dompet kulit asli tipis dengan pemblokir RFID. Menampung hingga 8 kartu dan nyaman di saku manapun.",
+        "es": "Billetera delgada de cuero genuino con bloqueo RFID. Cabe hasta 8 tarjetas y entra en cualquier bolsillo."
+      },
+      "price": 35, "stock": 45, "category": "accessories",
+      "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=900&q=80"
+    },
+    {
+      "id": "p3",
+      "name": { "en": "Wireless Headphones", "id": "Headphone Nirkabel", "es": "Auriculares Inalámbricos" },
+      "description": {
+        "en": "Premium over-ear wireless headphones with active noise cancellation and 30-hour battery life.",
+        "id": "Headphone over-ear nirkabel premium dengan noise cancellation aktif dan baterai 30 jam.",
+        "es": "Auriculares inalámbricos premium con cancelación de ruido activa y 30 horas de batería."
+      },
+      "price": 120, "stock": 12, "category": "electronics",
+      "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80"
+    },
+    {
+      "id": "p4",
+      "name": { "en": "Stainless Water Bottle", "id": "Botol Air Stainless", "es": "Botella de Agua de Acero" },
+      "description": {
+        "en": "Double-walled stainless steel bottle keeps drinks cold 24h or hot 12h. BPA-free and eco-friendly.",
+        "id": "Botol baja double-wall menjaga minuman dingin 24 jam atau panas 12 jam. BPA-free dan ramah lingkungan.",
+        "es": "Botella de acero de doble pared mantiene bebidas frías 24h o calientes 12h. Sin BPA y ecológica."
+      },
+      "price": 24, "stock": 60, "category": "lifestyle",
+      "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=900&q=80"
+    },
+    {
+      "id": "p5",
+      "name": { "en": "Canvas Backpack", "id": "Tas Ransel Kanvas", "es": "Mochila de Lona" },
+      "description": {
+        "en": "Durable 30L canvas backpack with padded laptop sleeve and multiple organizer pockets for everyday carry.",
+        "id": "Ransel kanvas 30L yang tahan lama dengan sleeve laptop berpadding dan banyak kantong organizer.",
+        "es": "Mochila de lona resistente de 30L con compartimento acolchado para laptop y múltiples bolsillos."
+      },
+      "price": 65, "stock": 30, "category": "accessories",
+      "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80"
+    },
+    {
+      "id": "p6",
+      "name": { "en": "Smart Watch", "id": "Jam Tangan Pintar", "es": "Reloj Inteligente" },
+      "description": {
+        "en": "Stylish smartwatch with health tracking, built-in GPS, and 7-day battery life. Water-resistant to 50m.",
+        "id": "Smartwatch stylish dengan pelacak kesehatan, GPS bawaan, dan baterai 7 hari. Tahan air hingga 50m.",
+        "es": "Smartwatch elegante con seguimiento de salud, GPS integrado y 7 días de batería. Resistente al agua hasta 50m."
+      },
+      "price": 199, "stock": 15, "category": "electronics",
+      "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80"
+    },
+    {
+      "id": "p7",
+      "name": { "en": "Premium Yoga Mat", "id": "Matras Yoga Premium", "es": "Esterilla de Yoga Premium" },
+      "description": {
+        "en": "Non-slip 6mm thick yoga mat with alignment lines and carry strap. Made from eco-friendly TPE material.",
+        "id": "Matras yoga non-slip tebal 6mm dengan garis alignment dan tali bawa. Terbuat dari TPE ramah lingkungan.",
+        "es": "Esterilla de yoga antideslizante de 6mm con líneas de alineación y correa transportadora. De TPE ecológico."
+      },
+      "price": 45, "stock": 25, "category": "lifestyle",
+      "image": "https://images.unsplash.com/photo-1601925228028-a9eb5b7f9f91?auto=format&fit=crop&w=900&q=80"
+    },
+    {
+      "id": "p8",
+      "name": { "en": "Polarized Sunglasses", "id": "Kacamata Hitam Polarized", "es": "Gafas de Sol Polarizadas" },
+      "description": {
+        "en": "UV400 polarized sunglasses with lightweight titanium frame. Perfect for outdoor sports and everyday wear.",
+        "id": "Kacamata hitam polarized UV400 dengan rangka titanium ringan. Sempurna untuk olahraga outdoor dan pemakaian harian.",
+        "es": "Gafas de sol polarizadas UV400 con montura de titanio ligera. Perfectas para deportes al aire libre y uso diario."
+      },
+      "price": 55, "stock": 40, "category": "accessories",
+      "image": "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=900&q=80"
+    }
+  ],
+  "orders": []
+}

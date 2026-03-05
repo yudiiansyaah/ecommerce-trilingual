@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TriShop — Premium Online Store</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+<!-- Toast notifications -->
+<div id="toastContainer" class="toast-container"></div>
+
+<!-- Sticky Header -->
+<header class="header" id="siteHeader">
+  <div class="header-inner">
+    <a class="logo" href="/">Tri<span>Shop</span></a>
+
+    <div class="header-search">
+      <svg class="search-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/></svg>
+      <input id="searchInput" type="search" placeholder="" autocomplete="off" />
+    </div>
+
+    <div class="header-actions">
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="id">ID</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+      </div>
+
+      <button id="cartToggleBtn" class="icon-btn" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span id="cartBadge" class="cart-badge hidden">0</span>
+      </button>
+
+      <div id="userArea">
+        <button id="loginTriggerBtn" class="btn btn-outline-white btn-sm"></button>
+      </div>
+      <div id="userDropdownArea" class="user-dropdown-wrap hidden">
+        <button id="userAvatarBtn" class="icon-btn user-avatar-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span id="userNameDisplay"></span>
+        </button>
+        <div id="userDropdown" class="user-dropdown hidden">
+          <div class="dropdown-user-info">
+            <strong id="dropUserName"></strong>
+            <span id="dropUserRole" class="role-tag"></span>
+          </div>
+          <hr />
+          <button class="dropdown-item" id="dropOrdersBtn"></button>
+          <button class="dropdown-item admin-only hidden" id="dropAdminBtn"></button>
+          <hr />
+          <button class="dropdown-item danger-item" id="logoutBtn"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Cart Drawer -->
+<div id="cartOverlay" class="overlay hidden"></div>
+<aside id="cartDrawer" class="drawer">
+  <div class="drawer-header">
+    <h3 id="cartTitle">Cart</h3>
+    <button id="cartCloseBtn" class="close-btn" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div id="cartItems" class="drawer-body"></div>
+  <div class="drawer-footer">
+    <div class="cart-total-row">
+      <span id="totalLabel">Total</span>
+      <strong id="totalPrice">$0.00</strong>
+    </div>
+    <label id="paymentLabel" for="provider" class="input-label"></label>
+    <select id="provider" class="select-input">
+      <option value="stripe">Stripe</option>
+      <option value="midtrans">Midtrans</option>
+    </select>
+    <button id="checkoutBtn" class="btn btn-primary btn-full"></button>
+    <p id="checkoutHint" class="hint-text"></p>
+  </div>
+</aside>
+
+<!-- Auth Modal -->
+<div id="authModal" class="modal-overlay hidden" role="dialog" aria-modal="true">
+  <div class="modal">
+    <button class="modal-close" id="authModalClose" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="modal-tabs">
+      <button class="tab-btn active" id="tabLoginBtn" data-tab="login"></button>
+      <button class="tab-btn" id="tabRegisterBtn" data-tab="register"></button>
+    </div>
+    <div id="loginPane" class="tab-pane">
+      <form id="loginForm" class="auth-form" novalidate>
+        <div class="form-group">
+          <label class="input-label">Email</label>
+          <input id="loginEmail" type="email" class="form-input" required autocomplete="email" />
+        </div>
+        <div class="form-group">
+          <label class="input-label" id="passwordLabel"></label>
+          <input id="loginPassword" type="password" class="form-input" required autocomplete="current-password" />
+        </div>
+        <button class="btn btn-primary btn-full" type="submit" id="loginSubmitBtn"></button>
+      </form>
+      <p class="hint-text center" id="adminHint"></p>
+    </div>
+    <div id="registerPane" class="tab-pane hidden">
+      <form id="registerForm" class="auth-form" novalidate>
+        <div class="form-group">
+          <label class="input-label" id="fullNameLabel"></label>
+          <input id="regName" class="form-input" required autocomplete="name" />
+        </div>
+        <div class="form-group">
+          <label class="input-label">Email</label>
+          <input id="regEmail" type="email" class="form-input" required autocomplete="email" />
+        </div>
+        <div class="form-group">
+          <label class="input-label" id="passwordMinLabel"></label>
+          <input id="regPassword" type="password" class="form-input" required autocomplete="new-password" />
+        </div>
+        <button class="btn btn-primary btn-full" type="submit" id="registerSubmitBtn"></button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Product Quick-View Modal -->
+<div id="productModal" class="modal-overlay hidden" role="dialog" aria-modal="true">
+  <div class="modal modal-product">
+    <button class="modal-close" id="productModalClose" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div id="productModalContent"></div>
+  </div>
+</div>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge" id="heroBadge"></div>
+    <h1 class="hero-title" id="headline"></h1>
+    <p class="hero-sub" id="subtitle"></p>
+    <button class="btn btn-white btn-lg" id="heroShopBtn"></button>
+  </div>
+  <div class="hero-visual" aria-hidden="true">
+    <div class="hero-blob"></div>
+  </div>
+</section>
+
+<!-- Shop Section -->
+<section class="section shop-section" id="shopSection">
+  <div class="container">
+    <div class="shop-header">
+      <h2 class="section-title" id="productsTitle"></h2>
+      <div id="categoryPills" class="category-pills"></div>
+    </div>
+    <div id="productGrid" class="product-grid"></div>
+    <div id="noResults" class="no-results hidden">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <p id="noResultsText"></p>
+    </div>
+  </div>
+</section>
+
+<!-- My Orders Section -->
+<section class="section orders-section" id="ordersSection">
+  <div class="container">
+    <h2 class="section-title" id="myOrdersTitle"></h2>
+    <div id="myOrders" class="orders-list"></div>
+  </div>
+</section>
+
+<!-- Admin Panel -->
+<section id="adminSection" class="section admin-section hidden">
+  <div class="container">
+    <div class="admin-header">
+      <h2 class="section-title" id="adminTitle"></h2>
+      <span class="admin-badge">Admin</span>
+    </div>
+
+    <div class="admin-grid">
+      <!-- Add Product -->
+      <div class="admin-card">
+        <h3 id="addProductHeading"></h3>
+        <form id="addProductForm" class="admin-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="input-label">Name EN</label>
+              <input id="pNameEn" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label class="input-label">Name ID</label>
+              <input id="pNameId" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label class="input-label">Name ES</label>
+              <input id="pNameEs" class="form-input" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="input-label" id="priceLabel"></label>
+              <input id="pPrice" type="number" min="1" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label class="input-label" id="stockLabel"></label>
+              <input id="pStock" type="number" min="0" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label class="input-label" id="categoryLabel"></label>
+              <select id="pCategory" class="form-input">
+                <option value="accessories">Accessories</option>
+                <option value="electronics">Electronics</option>
+                <option value="footwear">Footwear</option>
+                <option value="lifestyle">Lifestyle</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="input-label">Image URL</label>
+            <input id="pImage" type="url" class="form-input" placeholder="https://..." />
+          </div>
+          <button class="btn btn-primary" type="submit" id="addProductBtn"></button>
+        </form>
+      </div>
+
+      <!-- Manage Products -->
+      <div class="admin-card">
+        <h3 id="adminProductsTitle"></h3>
+        <div id="adminProducts" class="admin-list"></div>
+      </div>
+    </div>
+
+    <!-- All Orders -->
+    <div class="admin-card" style="margin-top:20px">
+      <h3 id="adminOrdersTitle"></h3>
+      <div id="adminOrders" class="admin-list"></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="logo">Tri<span>Shop</span></span>
+      <p id="footerTagline"></p>
+    </div>
+    <div class="footer-cols">
+      <div>
+        <h4 id="footerShopHeading"></h4>
+        <ul>
+          <li><a href="#shopSection" id="footerAllProducts"></a></li>
+          <li><a href="#shopSection" id="footerElectronics"></a></li>
+          <li><a href="#shopSection" id="footerAccessories"></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 id="footerSupportHeading"></h4>
+        <ul>
+          <li><a href="#" id="footerFaq"></a></li>
+          <li><a href="#" id="footerContact"></a></li>
+          <li><a href="#" id="footerReturns"></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p id="footerCopyright"></p>
+  </div>
+</footer>
+
+<script src="/main.js"></script>
+</body>
+</html>

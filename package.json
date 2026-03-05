@@ -1,0 +1,10 @@
+{
+  "name": "ecommerce-trilingual",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Simple e-commerce demo with EN/ID/ES language switcher",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

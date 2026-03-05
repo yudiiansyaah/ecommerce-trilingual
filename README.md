@@ -11,7 +11,7 @@ Full e-commerce demo features:
 
 Run:
 ```bash
-cd /home/yuds/project/ecommerce-trilingual
+cd ecommerce-trilingual
 npm start
 ```
 Open: `http://localhost:3000`
@@ -31,7 +31,7 @@ Fitur demo toko online lengkap:
 
 Jalankan:
 ```bash
-cd /home/yuds/project/ecommerce-trilingual
+cd ecommerce-trilingual
 npm start
 ```
 Buka: `http://localhost:3000`
@@ -51,7 +51,7 @@ Funciones completas del demo de e-commerce:
 
 Ejecuta:
 ```bash
-cd /home/yuds/project/ecommerce-trilingual
+cd ecommerce-trilingual
 npm start
 ```
 Abre: `http://localhost:3000`

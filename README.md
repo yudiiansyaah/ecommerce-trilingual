@@ -1,5 +1,7 @@
 # TriShop Full (EN/ID/ES)
 
+![Homepage](ecommerce-home.png)
+
 ## EN
 Full e-commerce demo features:
 - Register/Login (token auth)
